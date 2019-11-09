@@ -5,7 +5,7 @@ import java.lang.*;
 public class Guess_the_number{
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
-    System.out.print("Guess an integer number between 0 and 10000: ");
+    System.out.print("Guess any integer number larger than 0: "); // blir lite problem om man gissar ett nummer som är större än det största tillåtna integernumret
     String n = scanner.next();
     int number= 0;
     try{
@@ -15,10 +15,18 @@ public class Guess_the_number{
       System.out.println("Please enter a valid input");
       System.exit(0);
     }
+    if (number < 0){
+      System.out.println("Please enter a valid input");
+      System.exit(0);
+    }
     int lo = 0;
     int hi = 10000;
+    int noOfGuesses = 1; //Because if the number is < 10000 we have still asked once
+    while (number > hi){
+      hi = hi*2;
+      noOfGuesses++;
+    }
     int mid = (lo+hi)/2;
-    int noOfGuesses = 0;
     while (lo <= mid){
       noOfGuesses++;
       if (number > mid){
